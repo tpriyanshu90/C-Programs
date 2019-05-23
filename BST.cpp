@@ -23,7 +23,7 @@ NODE* insert(NODE* node, int key){
 	else if(key<node->data){
 		node->left = insert(node->left,key);
 	}
-	else{
+	else if(key>node->data){
 		node->right = insert(node->right,key);
 	}
 	return node;
@@ -74,7 +74,7 @@ int main()
     root = insert(root,5);
     insert(root, 2);
     insert(root, 4);
-    insert(root, 6);
+    insert(root, 4);
     insert(root, 8);
     insert(root, 1);
     inorder(root);
