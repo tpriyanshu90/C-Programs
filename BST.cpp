@@ -53,37 +53,111 @@ void postorder(NODE* root){
 	}
 }
 
-void search(NODE* node, int key){
+NODE* search(NODE* node, int key){
 	if(node!=NULL){
-		if(node->data == key)
+		if(node->data == key){
 			cout<<"Element found";
+		}
 		else if(key < node->data)
-			search(node->left, key);
+			node = search(node->left, key);
 		else
-			search(node->right,key);
+			node = search(node->right,key);
 	}
 	else
 		cout<<"Element not present!\n";
+	return node;
+}
+
+NODE* minNode(NODE* node){
+	if(node->left==NULL)
+		return node;
+	if(node!=NULL)
+		return minNode(node->left);
+}
+
+NODE* delete_node(NODE* node, int key){
+	if(node == NULL)
+		return node;
+	else if(key<node->data){
+		node->left = delete_node(node->left,key);
+	}
+	else if(key>node->data){
+		node->right = delete_node(node->right,key);
+	}
+	else{
+		if(node->left==NULL){
+			NODE* temp = node->right;
+			free(node);
+			return temp;
+		}
+		else if(node->right==NULL){
+			NODE* temp = node->right;
+			free(node);
+			return temp;
+		}
+		else{
+			NODE* minRightNode = minNode(node->right);
+			node->data = minRightNode->data;
+			node->right = delete_node(node->right,minRightNode->data);
+		}
+	}
+	return node;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    NODE * root = NULL;
-    root = insert(root,5);
-    insert(root, 2);
-    insert(root, 4);
-    insert(root, 4);
-    insert(root, 8);
-    insert(root, 1);
-    inorder(root);
-    cout<<'\n';
-    preorder(root);
-    cout<<'\n';
-    postorder(root);
-    cout<<'\n';
-    search(root,11);
-    cout<<'\n';
+    NODE* root = NULL;
+    char ch('y');
+    while(ch == 'y' || ch == 'Y'){
+    	int choice, key;
+    	cout<<"Which operation do you want to perform?\n1. Insertion\n2. Deletion\n3. Searching\n4. Inorder traversing\n5. Preorder traversing\n6. Postorder traversing\n7. Delete Complete Tree\n8. Exit\n";
+    	cout<<"Your choice: ";
+    	cin>>choice;
+    	cin.ignore();
+    	switch(choice){
+    		case 1:
+    			cout<<"\nEnter element to be inserted: ";
+    			cin>>key;
+    			if(root==NULL)
+    				root = insert(root,key);
+    			else
+    				insert(root,key);
+    			cout<<endl;
+    			break;
+    		case 2:
+    			cout<<"\nEnter element to be deleted: ";
+    			cin>>key;
+    			delete_node(root,key);
+    			cout<<"\nNode "<<key<<" Deleted Successfully!\n";
+    			break;
+    		case 3:
+    			cout<<"\nEnter element to be searched: ";
+    			cin>>key;
+    			search(root,key);
+    			break;
+    		case 4:
+    			cout<<"\nInorder traversal: ";
+    			inorder(root);
+    			break;
+    		case 5:
+    			cout<<"\nPreorder traversal: ";
+    			preorder(root);
+    			break;
+    		case 6:
+    			cout<<"\nPostorder traversal: ";
+    			postorder(root);
+    			break;
+    		case 7:
+    			root = NULL;
+    			cout<<"\nBinary Search tree deleted.\n";
+    			break;
+    		case 8:
+    			exit(1);
+    		default:
+    			cout<<"\nPlease choose correct option!\n";			
+    	}
+    	cout<<"\nDo you want to continue? (y/n) : ";
+    	cin>>ch;
+    }
     return 0;
 }
