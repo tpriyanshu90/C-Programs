@@ -17,14 +17,26 @@ int LCS(string s1, string s2, int i, int j){
 }
 
 //Dynamic Programming Method
-int DP_LCS(string s1, string s2, int m, int n){
-	if(m==0 || n==0)
-		return 0;
-	else if(s1[m-1]==s2[n-1])
-		return 1+DP_LCS(s1,s2,m-1,n-1);
-	else
-		return max(DP_LCS(s1,s2,m-1,n),DP_LCS(s1,s2,m,n-1));
-}
+int DP_LCS(string s1, string s2, int m, int n) 
+{ 
+   int L[m+1][n+1]; 
+   int i, j; 
+   for (i=0; i<=m; i++) 
+   { 
+     for (j=0; j<=n; j++) 
+     { 
+       if (i == 0 || j == 0) 
+         L[i][j] = 0; 
+   
+       else if (s1[i-1] == s2[j-1]) 
+         L[i][j] = L[i-1][j-1] + 1; 
+   
+       else
+         L[i][j] = max(L[i-1][j], L[i][j-1]); 
+     } 
+   } 
+     return L[m][n]; 
+} 
 
 int main()
 {
