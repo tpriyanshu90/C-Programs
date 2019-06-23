@@ -162,4 +162,3 @@ int main()
             <<getSum(st, n, 1, 3)<<endl;  
     return 0;  
 }  
-//This code is contributed by rathbhupendra 
