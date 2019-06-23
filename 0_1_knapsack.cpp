@@ -2,7 +2,7 @@
 * AUTHOR : PRIYANSHU TIWARI *
 * NICK : tpriyanshu *
 * PROGRAM : 0/1 Knapsack problem Dynamic Programming*
-******************************************/
+*******************************************/
 #include <bits/stdc++.h>
 using namespace std;
 typedef unsigned long long ll;
