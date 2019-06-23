@@ -1,6 +1,7 @@
 /******************************************
 * AUTHOR : PRIYANSHU TIWARI *
 * NICK : tpriyanshu *
+* Program : Longest Common Subsequence *
 *******************************************/
 #include <bits/stdc++.h>
 using namespace std;
