@@ -2,7 +2,7 @@
 * AUTHOR : PRIYANSHU TIWARI *
 * NICK : tpriyanshu *
 * PROGRAM : Minimum Number of Coins Dynamic programming *
-******************************************/
+*******************************************/
 #include <bits/stdc++.h>
 using namespace std;
 typedef unsigned long long ll;
