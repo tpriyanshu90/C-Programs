@@ -7,7 +7,7 @@
 using namespace std;
 
 typedef unsigned long long ll;
-#define MAX 500 
+#define MAX 1000 
 
 int multiply(int x,int res[],int res_size){
 	int carry=0;
